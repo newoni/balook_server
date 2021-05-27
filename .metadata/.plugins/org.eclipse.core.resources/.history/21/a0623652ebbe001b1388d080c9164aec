@@ -1,0 +1,13 @@
+package service;
+
+import dao.UserDAO;
+import dto.RequestUser;
+import entity.User;
+
+public class UserService {
+	RequestUser requestUser;
+	User user;
+	UserDAO<User> userDAO;
+	
+	
+}

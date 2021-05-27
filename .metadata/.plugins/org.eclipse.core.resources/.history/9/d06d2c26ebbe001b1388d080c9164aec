@@ -1,0 +1,41 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Statement;
+
+public abstract class BaseDAO {
+	public Connection connection;
+	public static final String URL ="jdbc:oracle:thin:@localhost:1521:xe";
+	public static final String USERID ="COMMUNITYDATA";
+	public static final String PASSWORD ="COMMUNITYDATA";
+	public Statement statement;
+	
+	// 추상클래스 생성자 실행
+	public BaseDAO() {
+//		드라이버 로드
+		super();
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			System.out.printf("%s \r\n", "드라이버가 로드 되었습니다.");
+			System.out.println();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+//			System.out.printf("%s \r\n", "드라이버가 로드 안 되었습니다.");
+			System.out.println();
+		}
+		
+//		DB 연결
+		try {
+			this.connection = DriverManager.getConnection(URL, USERID, PASSWORD);
+//			System.out.printf("%s \r\n", "데이터 베이스 연결 성공");
+			System.out.println();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+//			System.out.printf("%s \r\n", "데이터 베이스 연결 비성공");
+			System.out.println();
+		}
+
+	}
+}

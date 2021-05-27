@@ -1,0 +1,10 @@
+package service;
+
+import dto.RequestUser;
+
+public class UserService {
+	RequestUser requestUser;
+	User user;
+	
+	
+}

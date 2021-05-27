@@ -1,0 +1,107 @@
+.navbar__menu li a{
+    text-decoration:none;
+    color:white; 
+}
+
+.navbar__logo a{
+    text-decoration:none;
+    color:white; 
+}
+
+.navbar{
+    
+    padding:8px 12px;
+    background-color:#302718;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Nanum Pen Script', cursive;
+}
+
+
+
+.navbar__logo{   
+    font-size: 24px;
+    color:white;
+}
+
+.navbar__menu{
+    display:flex;
+    list-Style:none;
+    font-size:20px;
+}
+
+.navbar__menu li{
+    padding:8px 12px;
+}
+
+.navbar__menu li:hover{
+    background-color: #C7AB59;
+    border-radius: 4px;
+}
+.navbar__links{
+    list-style: none;
+    display:flex;
+}
+
+.navbar__links a{
+    color: white;
+    text-decoration: none;
+}
+
+.navbar__links li{
+    padding: 8px 12px;
+    color:white;
+}
+
+.navbar__toggleBtn{
+    position:absolute; 
+    right:32px;
+    font-size: 24px;
+    color:#C7AB59;
+    display:none;
+}
+
+@media screen and (max-width:768px){
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+        z-index: 3;
+    }
+
+    .navbar__menu{
+        display:none;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+        z-index: 3;
+    }
+
+    .navbar__menu ul{
+        z-index: 3;
+    }
+    .navbar__menu li{
+        width:100%;
+        text-align:center;
+        z-index: 3;
+    }
+
+    .navbar__links{
+        display:none;
+        justify-content: center;
+        width:100%;
+        z-index: 3;
+    }
+
+    .navbar__toggleBtn{
+        display: block;
+        z-index: 3;
+    }
+    .navbar__menu.active,
+    .navbar__links.active{
+        display:flex;
+    }
+
+}
+
