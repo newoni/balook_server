@@ -1,18 +1,19 @@
 package service;
 
-import java.sql.ResultSet;
-
 import dao.UserDAO;
 import dto.RequestUser;
+import dto.ResponseUser;
 import entity.User;
 
 public class UserService {
-	RequestUser requestUser;
-	User user;
-	UserDAO<User> userDAO;
+	UserDAO userDAO = new UserDAO();
 	
-	public ResultSet logIn(RequestUser requestUser) {
+	public ResponseUser SignIn(RequestUser requestUser) {
+		User user = userDAO.findByUserIdAndPassword(requestUser);
 		
+		ResponseUser responseUser = new ResponseUser();
+		responseUser.setId(user.getUserId());
 		
+		return responseUser;
 	}
 }

@@ -1,8 +1,15 @@
 package dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import dto.ResponseArticle;
+import entity.Article;
 import ifs.DAO;
 
-public class ArticleDAO<Article> implements DAO<Article> {
+public class ArticleDAO extends BaseDAO  implements DAO<Article>{
 
 	@Override
 	public Article create(Article data) {
@@ -28,4 +35,30 @@ public class ArticleDAO<Article> implements DAO<Article> {
 		
 	}
 	
+	public List<ResponseArticle> readAllArticle() {
+		List<ResponseArticle> resList = new ArrayList<ResponseArticle>();
+		String query = "SELECT * FROM ARTICLE, CUSTOMER WHERE ARTICLE.AUTHOR=CUSTOMER.ID";
+		ResultSet resultSet = runSQL(query);
+		
+		try {
+			for(int i =0 ;  i<resultSet.getFetchSize();i++) {
+				if(resultSet.next()) {
+					ResponseArticle responseArticle = new ResponseArticle();
+					responseArticle.setAuthor(resultSet.getString(7));
+					responseArticle.setNumber(resultSet.getInt(1));
+					responseArticle.setTitle(resultSet.getString(3));
+					responseArticle.setDate(resultSet.getDate(5).toLocalDate());
+					
+					resList.add(responseArticle);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resList;
+	}
 }
+
+	

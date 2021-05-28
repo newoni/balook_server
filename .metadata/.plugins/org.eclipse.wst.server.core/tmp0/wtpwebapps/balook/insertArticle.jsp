@@ -60,7 +60,6 @@
             </div>
 
             <form method="POST" action="articleController.jsp">
-            	<input type="hidden" value="insert" name="action">
                 <div class="titleDiv">
                     <label for="title" >제목</label>
                     <input type="text" class="titleText" name="title" id="title">

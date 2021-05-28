@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="user" scope="request" class="dto.RequestUser"/>
-<jsp:setProperty name="user" property="*"/>
+<%@ page import="service.UserService" %>
+<jsp:useBean id="requestUser" class="dto.RequestUser"/>
+<jsp:useBean id="responseUser" class="dto.ResponseUser"/>
+<jsp:setProperty name="requestUser" property="*" />
 
 <%
-	
+UserService userService = new UserService();
+responseUser = userService.SignIn(requestUser);
+
+session.setAttribute("id", responseUser.getId());
+
+response.sendRedirect("index.html");
 %>
-
-
-<%= user.getId() %>
-<%= user.getPassword() %>

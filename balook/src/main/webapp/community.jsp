@@ -1,5 +1,26 @@
+<%@page import="dto.ResponseArticle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="service.ArticleService" %>
+<jsp:useBean id="articleList" class="dto.ResponseArticleList"/>
+<% 
+ArticleService articleService = new ArticleService();
+articleList.setArticleList( articleService.readAll() ); 
+
+	//로그인 확인 
+	if(session.getAttribute("id") ==null){
+	
+	%>
+	
+	<script>
+	alert("로그인이 필요한 서비스입니다");
+	history.back();
+	</script>
+
+<%
+	}
+	%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +52,7 @@
     <!-- js 연결-->
     <script src="./js/menuBtn.js" defer></script>
     <script src="./js/alert.js" defer></script>
+    <script src="./js/request.js" defer></script>
 
     <!-- 구글 폰트 연결-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -77,35 +99,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td class="articleTitle" style="text-align: left;">test 제목입니다 많은 이용 부탁드립니다.</td>
-                            <td>허강혁</td>
-                            <td>21.05.09 15:28</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td class="articleTitle" style="text-align: left;">test 제목</td>
-                            <td>test 작성자</td>
-                            <td>test 작성일</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td class="articleTitle"style="text-align: left;">test 제목</td>
-                            <td>test 작성자</td>
-                            <td>test 작성일</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
                         
+                    	<%for(ResponseArticle resArticle: articleList.getArticleList()){%>
+                        	
+                        	
+	                        <tr>
+	                        	<td><a href="ArticleController.jsp?articleNumber=<%= resArticle.getNumber() %>">  <%= resArticle.getNumber() %> </a></td>
+	                        	<td><%= resArticle.getTitle() %></td>
+	                        	<td><%= resArticle.getAuthor() %></td>
+	                        	<td><%= resArticle.getDate() %></td>
+	                        	<td><%= 0 %></td>
+	                        	<td><%= 0 %></td>
+							</tr>
+							
+						
+                        <%} %>
                         
                     </tbody>
                     <tfoot></tfoot>
                 </table>
+                
 
                 <div class="pagenationBox">
                     <ul class="pagenation">
@@ -124,7 +137,7 @@
                 </ul>
 
                 <div class="board">
-                    <button class="sideBarBtn" onclick= "tmpMessage()"> 글쓰기</button>
+                    <button class="sideBarBtn" onclick= "location='insertArticle.jsp'"> 글쓰기</button>
                     <button class="sideBarBtn" onclick= "tmpMessage()"> 내 게시물</button>
                 </div>
             </aside>
