@@ -1,17 +1,17 @@
 package dto;
 
 public class RequestArticle {
-private int author;
+	private String author;
 	
 	private String title;
 	
 	private String contents;
 
-	public int getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(int author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 

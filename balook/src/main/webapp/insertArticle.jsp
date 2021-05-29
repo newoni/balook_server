@@ -58,8 +58,8 @@
                 <i class="fas fa-dice"></i>
                 <a href="./mainPageController.jsp">balook</a>
             </div>
-
-            <form method="POST" action="articleController.jsp">
+            <form method="POST" action="ArticleController.jsp">
+            	<input type="hidden" name="action" id="action" value="create">
                 <div class="titleDiv">
                     <label for="title" >제목</label>
                     <input type="text" class="titleText" name="title" id="title">

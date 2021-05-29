@@ -2,7 +2,7 @@ package ifs;
 
 public interface DAO<T> {
 
-	public T create(T data);
+	public void create(T data);
 	
 	public T read(int id);
 	

@@ -11,7 +11,7 @@ import ifs.DAO;
 public class UserDAO extends BaseDAO implements DAO<entity.User> {
 
 	@Override
-	public User create(User data) {
+	public void create(User data) {
 		String query = "INSERT INTO ARTICLE VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement prepared_statement = this.connection.prepareStatement(query);
@@ -39,7 +39,6 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 			System.out.println();
 		}
 		
-		return null;
 	}
 
 	@Override
@@ -78,6 +77,26 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 		
 	}
 	
+	public User findByUserId(String userId) {
+		User user = new User();
+		String query = "SELECT * FROM CUSTOMER WHERE USERID LIKE \'" + userId + "\'";
+		ResultSet resultSet = runSQL(query);
+		
+		try {
+			if(resultSet.next()) {
+				user.setId(resultSet.getInt(1));
+				user.setUserId(resultSet.getString(2));
+				user.setPassWord(resultSet.getString(3));
+				user.setName(resultSet.getString(4));
+				user.setPhone(resultSet.getString(5));
+				user.setEmail(resultSet.getString(6));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
+	}
 	public User findByUserIdAndPassword(RequestUser requestUser) {
 		User user = new User();
 		String query = "SELECT * FROM CUSTOMER WHERE USERID LIKE \'" + requestUser.getId() + "\' AND PASSWORD LIKE \'" + requestUser.getPassword() +"\'";

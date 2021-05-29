@@ -102,7 +102,6 @@ articleList.setArticleList( articleService.readAll() );
                         
                     	<%for(ResponseArticle resArticle: articleList.getArticleList()){%>
                         	
-                        	
 	                        <tr>
 	                        	<td><a href="readOneArticle.jsp?action=read&articleNumber=<%= resArticle.getNumber() %>">  <%= resArticle.getNumber() %> </a></td>
 	                        	<td><%= resArticle.getTitle() %></td>
