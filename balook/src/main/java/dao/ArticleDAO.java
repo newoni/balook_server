@@ -9,7 +9,7 @@ import dto.ResponseArticle;
 import entity.Article;
 import ifs.DAO;
 
-public class ArticleDAO extends BaseDAO  implements DAO<Article>{
+public class ArticleDAO extends BaseDAO implements DAO<Article>{
 
 	@Override
 	public Article create(Article data) {
@@ -19,8 +19,23 @@ public class ArticleDAO extends BaseDAO  implements DAO<Article>{
 
 	@Override
 	public Article read(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Article article = new Article();
+		String query = "SELECT * FROM ARTICLE WHERE ID="+id;
+		ResultSet resultSet = runSQL(query);
+		
+		try {
+			if(resultSet.next()) {
+					article.setId(resultSet.getInt(1));
+					article.setAuthor(resultSet.getInt(2));
+					article.setTitle(resultSet.getString(3));
+					article.setContents(resultSet.getString(4));
+					article.setBoardTime(resultSet.getDate(5).toLocalDate());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return article;
 	}
 
 	@Override

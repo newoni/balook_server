@@ -6,14 +6,15 @@ import dto.ResponseUser;
 import entity.User;
 
 public class UserService {
-	UserDAO userDAO = new UserDAO();
 	
 	public ResponseUser SignIn(RequestUser requestUser) {
+		UserDAO userDAO = new UserDAO();
 		User user = userDAO.findByUserIdAndPassword(requestUser);
 		
 		ResponseUser responseUser = new ResponseUser();
 		responseUser.setId(user.getUserId());
 		
+		userDAO.disconnectionDB();
 		return responseUser;
 	}
 }

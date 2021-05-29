@@ -35,18 +35,18 @@
         <div class="navbar">
           <div class="navbar__logo">
               <i class="fas fa-dice"></i>
-              <a href="./index.html">balook</a>
+              <a href="./mainPageController.jsp">balook</a>
           </div>
           <ul class="navbar__menu">
-              <li><a href="./index.html">Home</a></li>
+              <li><a href="./mainPageController.jsp">Home</a></li>
               <li><a href="./community.jsp">Community</a></li>
               <li><a href="#" onclick= "tmpMessage()">test</a></li>
               <li><a href="#" onclick= "tmpMessage()">test2</a></li>
               <li><a href="#" onclick= "tmpMessage()">test3</a></li>
           </ul>
           <ul class="navbar__links">
-              <li><a href="./signIn.jsp">sign-in</a></li>
-              <li><a href="./signUp.jsp"><i class="fas fa-user-friends"></i></a></li>
+              <li><%=session.getAttribute("id") %> 님 환영합니다</li>
+           		<li><a href="./mainPageController.jsp?action=signOut">sign-out</a></li>
           </ul>
   
           <a href="#" class="navbar__toggleBtn"><i class="fas fa-bars"></i></a>    
@@ -58,7 +58,7 @@
             <div class="inputCard">
                 <div class="logo">
                     <i class="fas fa-dice"></i>
-                    <a href="./index.html">balook</a>
+                    <a href="./mainPageController.jsp">balook</a>
                 </div>
     
                 <form method="POST">
@@ -85,11 +85,11 @@
         <div class="footerBox">
             <div class="footerLogo">
                 <i class="fas fa-dice"></i>
-                <a href="./index.html">balook</a>
+                <a href="./mainPageController.jsp">balook</a>
             </div>
 
             <ul class="footerMenu">
-                <li><a href="./index.html"></a>Home</a></li>
+                <li><a href="./mainPageController.jsp"></a>Home</a></li>
                 <li><a href="./community.jsp"></a>Community</a></li>
                 <li><a href="#"></a>test1</a></li>
                 <li><a href="#"></a>test2</a></li>

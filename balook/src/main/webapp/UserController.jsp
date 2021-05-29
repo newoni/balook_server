@@ -9,7 +9,17 @@
 UserService userService = new UserService();
 responseUser = userService.SignIn(requestUser);
 
-session.setAttribute("id", responseUser.getId());
-
-response.sendRedirect("index.html");
+if(responseUser.getId() ==null){
+	%>
+	<script>
+	alert("로그인 실패")
+	location.replace("signIn.jsp");
+	</script>
+	<%
+}
+else{
+	session.setAttribute("id", responseUser.getId());
+	
+	response.sendRedirect("mainPageController.jsp");
+	}
 %>

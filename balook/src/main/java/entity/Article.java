@@ -1,5 +1,6 @@
 package entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Article {
@@ -11,7 +12,7 @@ public class Article {
 	
 	private String contents;
 	
-	private LocalDateTime boardTime;
+	private LocalDate boardTime;
 	
 	public int getId() {
 		return id;
@@ -37,11 +38,11 @@ public class Article {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public LocalDateTime getBoardTime() {
+	public LocalDate getBoardTime() {
 		return boardTime;
 	}
-	public void setBoardTime(LocalDateTime boardTime) {
-		this.boardTime = boardTime;
+	public void setBoardTime(LocalDate localDate) {
+		this.boardTime = localDate;
 	}
 	
 }

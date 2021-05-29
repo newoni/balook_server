@@ -7,6 +7,7 @@ public class ResponseArticle {
 	private String author;
 	private String title;
 	private LocalDate date;
+	private String contents;
 	
 	public int getNumber() {
 		return number;
@@ -31,6 +32,12 @@ public class ResponseArticle {
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	
 	

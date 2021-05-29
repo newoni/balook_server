@@ -44,8 +44,26 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 
 	@Override
 	public User read(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = new User();
+		String query = "SELECT * FROM CUSTOMER WHERE ID="+id;
+		ResultSet resultSet = runSQL(query);
+		
+		try {
+			if(resultSet.next()) {
+					user.setId(resultSet.getInt(1));
+					user.setUserId(resultSet.getString(2));
+					user.setPassWord(resultSet.getString(3));
+					user.setName(resultSet.getString(4));
+					user.setPhone(resultSet.getString(5));
+					user.setEmail(resultSet.getString(6));
+					
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return user;
 	}
 
 	@Override

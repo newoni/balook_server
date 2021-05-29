@@ -36,7 +36,7 @@
 
         <div class="logo">
             <i class="fas fa-dice"></i>
-            <a href="./index.html">balook</a>
+            <a href="./index.jsp">balook</a>
         </div>
         
             
