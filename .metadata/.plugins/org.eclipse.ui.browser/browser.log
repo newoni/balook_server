@@ -1,3 +1,0 @@
-
-5월 27, 2021 20:03:56.581 NEW SESSION
-5월 27, 2021 20:03:56.581 [1288:9044:0527/200356.579:ERROR:device_event_log_impl.cc(214)] [20:03:56.579] USB: usb_device_handle_win.cc:1054 Failed to read descriptor from node connection: 시스템에 부착된 장치가 작동하지 않습니다. (0x1F)

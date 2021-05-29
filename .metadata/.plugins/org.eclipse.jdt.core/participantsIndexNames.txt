@@ -1,9 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\newon\Desktop\workingdir\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2283976911.index
-\balook\src\main\java
-C:\Users\newon\Desktop\workingdir\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\905107410.index
-\balook\src\main\java
-C:\Users\newon\Desktop\workingdir\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2058343426.index
-\balook\src\main\java
-C:\Users\newon\Desktop\balook\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2283976911.index
-\balook\src\main\java
