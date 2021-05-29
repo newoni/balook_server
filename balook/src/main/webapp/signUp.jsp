@@ -38,7 +38,8 @@
                 <a href="./index.jsp">balook</a>
             </div>
 
-            <form method="POST">
+            <form method="POST" action="UserController.jsp">
+            	<input type="hidden" name="action" id="action" value="signUp">
                 <div class="inputClass">
                     <div class="signUpId">
                         <label for="id">ID</label>
@@ -54,27 +55,10 @@
                             <input type="text" name="userName" id="userName" class="inputFormat" autocomplete="off" required> 
                         </div>
 
-                        <div class="birthDayBox">
-                            <label>생년월일</label>
-                            <div class="birthDay">
-                                <select>
-                                    <option>연도</option>
-                                    <script>
-                                        for(var i=1920 ; i<=2021 ; i++){
-                                        document.write("<option value="+i+">"+i+"</option>");
-                                        }
-                                    </script>
-                                </select>
-                                
-                                <select>
-                                    <option>월</option>
-                                    <script>
-                                        for(var i=1 ; i<=12 ; i++){
-                                        document.write("<option value="+i+">"+i+"</option>");
-                                        }
-                                    </script>
-                                </select>
-                                <input type="text" name="day" placeholder="일" id="password" class="inputIDPW" autocomplete="off" required style="width:39px">
+                        <div class="phonNumberBox">
+                            <label>전화번호</label>
+                            <div>
+                                <input type="text" name="phoneNumber" placeholder="전화번호 입력('-' 포함)" id="phoneNumber" class="phoneNumber" autocomplete="off" required>
                             </div>
                         </div>
 
@@ -83,19 +67,19 @@
                             <div class="eMailInput">
                                 <input type="text" name="email" id="email" class="email" autocomplete="off" required>
                                 <p>  @  </p>
-                                <select>
+                                <select name="domain">
                                     <option value="">--이메일 선택--</option>
-                                    <option value="naver">naver.com</option>
-                                    <option value="google">google.com</option>
-                                    <option value="hanmail">hanmail.net</option>
-                                    <option value="nate">nate.com</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="google.com">google.com</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="nate.com">nate.com</option>
                                 </select>
                             </div> 
                         </div>
                     </div>
                 </div>
 
-                <button class="signUpButton">회원가입</button>
+                <input type="submit" class="signUpButton" value="회원가입"></input>
              </form>
         </div>
     </section>

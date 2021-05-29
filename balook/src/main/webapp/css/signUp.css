@@ -15,7 +15,7 @@ body{
     
 
     border-radius: 25px;
-    background-color: gray; /*색깔이 별로임*/
+    background-color: gray; /*�깋源붿씠 蹂꾨줈�엫*/
     opacity: 0.7;
     /*color reference: <21.05.09> by KH
     https://in.pinterest.com/pin/28006828920022766/?d=t&mt=login
@@ -112,22 +112,20 @@ body{
     color:white;
 }
 
-.birthDayBox{
+.phonNumberBox{
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     color:white;
 }
 
-.birthDayBox label{
+.phoneNumberBox label{
     margin-top:20px;
     margin-bottom: 10px;
 }
 
-.birthDay{
-    display:flex;
-    justify-content: space-around;
-    margin-bottom:10px;
+.phoneNumber{
+    width:100%;
 }
 
 .eMail{

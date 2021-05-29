@@ -41,6 +41,7 @@
         
             
         <form method="POST" action="UserController.jsp">
+        	<input type="hidden" name="action" value="signIn">
             <div class="inputFlex">
                 
                 <div class="inputUnit">

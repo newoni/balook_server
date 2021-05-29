@@ -12,30 +12,23 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 
 	@Override
 	public void create(User data) {
-		String query = "INSERT INTO ARTICLE VALUES (?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement prepared_statement = this.connection.prepareStatement(query);
 			prepared_statement.setInt(1,  data.getId());
 			prepared_statement.setString(2, data.getUserId());
-			prepared_statement.setString(3, data.getPassWord());
+			prepared_statement.setString(3, data.getPassword());
 			prepared_statement.setString(4, data.getName());
 			prepared_statement.setString(5, data.getPhone());
-			prepared_statement.setString(5, data.getEmail());
-			/*
-			//현재 시간을 넣기 위한 date 형변환
-			Calendar cal = Calendar.getInstance();
-			Date d = new Date(cal.getTimeInMillis());
-			
-			prepared_statement.setDate(5, d);
-			*/
+			prepared_statement.setString(6, data.getEmail());
 			prepared_statement.execute();
-			System.out.println("INSERT INTO ARTICLE 성공");
+			System.out.println("INSERT INTO CUSTOMER 성공");
 			System.out.println();
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.printf("%s", "INSERT INTO ARTICLE 비성공");
+			System.out.printf("%s", "INSERT INTO CUSTOMER 비성공");
 			System.out.println();
 		}
 		
@@ -51,7 +44,7 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 			if(resultSet.next()) {
 					user.setId(resultSet.getInt(1));
 					user.setUserId(resultSet.getString(2));
-					user.setPassWord(resultSet.getString(3));
+					user.setPassword(resultSet.getString(3));
 					user.setName(resultSet.getString(4));
 					user.setPhone(resultSet.getString(5));
 					user.setEmail(resultSet.getString(6));
@@ -86,7 +79,7 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 			if(resultSet.next()) {
 				user.setId(resultSet.getInt(1));
 				user.setUserId(resultSet.getString(2));
-				user.setPassWord(resultSet.getString(3));
+				user.setPassword(resultSet.getString(3));
 				user.setName(resultSet.getString(4));
 				user.setPhone(resultSet.getString(5));
 				user.setEmail(resultSet.getString(6));
@@ -106,7 +99,7 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 			if(resultSet.next()) {
 				user.setId(resultSet.getInt(1));
 				user.setUserId(resultSet.getString(2));
-				user.setPassWord(resultSet.getString(3));
+				user.setPassword(resultSet.getString(3));
 				user.setName(resultSet.getString(4));
 				user.setPhone(resultSet.getString(5));
 				user.setEmail(resultSet.getString(6));
@@ -116,5 +109,20 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	public int getMaxId() {
+		String query = "SELECT MAX(id) FROM CUSTOMER";
+		ResultSet resultSet = runSQL(query);
+		int maxNumber=0;
+		try {
+			if(resultSet.next()) {
+					maxNumber = resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return maxNumber;
 	}
 }
