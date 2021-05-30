@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,9 +57,8 @@ public class ArticleDAO extends BaseDAO implements DAO<Article>{
 	}
 
 	@Override
-	public Article update(Article data) {
+	public void update(Article data) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -105,7 +103,20 @@ public class ArticleDAO extends BaseDAO implements DAO<Article>{
 		
 		return resList;
 	}
-
+	public int getTotArticleNumber() {
+		String query = "select count(*) from article";
+		ResultSet resultSet = runSQL(query);
+		int cntNumber=0;
+		try {
+			if(resultSet.next()) {
+				cntNumber = resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cntNumber;
+	}
 	public int getMaxId() {
 		String query = "SELECT MAX(id) FROM ARTICLE";
 		ResultSet resultSet = runSQL(query);

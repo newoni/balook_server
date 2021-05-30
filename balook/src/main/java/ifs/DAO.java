@@ -6,7 +6,7 @@ public interface DAO<T> {
 	
 	public T read(int id);
 	
-	public T update(T data);
+	public void update(T data);
 	
 	public void delete(int id);
 }

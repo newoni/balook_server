@@ -59,9 +59,8 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 	}
 
 	@Override
-	public User update(User data) {
+	public void update(User data) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

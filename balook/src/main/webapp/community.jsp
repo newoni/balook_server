@@ -1,13 +1,9 @@
-<%@page import="dto.ResponseArticle"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="service.ArticleService" %>
+<%@page import="dto.ResponseArticle"%>
+<%@page import="service.ArticleService" %>
 <jsp:useBean id="articleList" class="dto.ResponseArticleList"/>
 <% 
-//게시글 불러오기
-ArticleService articleService = new ArticleService();
-articleList.setArticleList( articleService.readAll() ); 
-
 	//로그인 확인 
 	if(session.getAttribute("id") ==null){
 	%>
@@ -20,6 +16,25 @@ articleList.setArticleList( articleService.readAll() );
 <%
 	}
 	%>
+	
+<%
+	//article 관련 서비스 불러오기
+	ArticleService articleService = new ArticleService();
+	int batchSize = 20;
+
+	//전체 페이지 받아오기
+	int totPage = articleService.getTotPage(batchSize);
+	//원하는 페이지 받아오고, 없을 경우 1페이지 출력 
+	
+	try{
+		String pageNumber = (String)session.getAttribute("page"); 
+		articleList.setArticleList(articleService.readPageOfArticles(batchSize, Integer.parseInt(pageNumber)));
+	}catch(Exception e){
+		e.printStackTrace();
+		articleList.setArticleList(articleService.readPageOfArticles(batchSize, 1));
+	}
+	
+%>
 	
 <!DOCTYPE html>
 <html>
@@ -121,10 +136,11 @@ articleList.setArticleList( articleService.readAll() );
 
                 <div class="pagenationBox">
                     <ul class="pagenation">
-                        <li><a href="http://www.naver.com">1</a></li>
-                        <li><a href="http://www.naver.com">2</a></li>
-                        <li><a href="http://www.naver.com">3</a></li>
-                        <li><a href="http://www.naver.com">4</a></li>
+                        <script>
+                        	for(var i=1; i<= <%=totPage%> ; i++){
+                        		document.write("<li><a href='ArticleController.jsp?action=pagination&page="+i +"''>"+ i + "</a></li>");
+                        	}
+                    	</script>
                     </ul>
                 </div>
             </section>

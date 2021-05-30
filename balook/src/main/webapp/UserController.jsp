@@ -37,7 +37,6 @@
 		//로그인 성공
 		else{
 			session.setAttribute("id", responseUser.getId());
-			
 			response.sendRedirect("mainPageController.jsp");
 			}	
 	}else{

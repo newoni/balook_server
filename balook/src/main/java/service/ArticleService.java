@@ -1,6 +1,7 @@
 package service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.ArticleDAO;
@@ -12,16 +13,36 @@ import entity.User;
 
 public class ArticleService {
 	
-	public List<ResponseArticle> readAll(){
+	public List<ResponseArticle> readPageOfArticles(int batchSize, Integer pageNumber){
 		ArticleDAO articleDAO = new ArticleDAO();
-		return articleDAO.readAllArticle();
+		
+		//전체 article list read
+		List<ResponseArticle> articleList =  articleDAO.readAllArticle();
+		
+		int totalListSize = articleList.size();
+		int totalPage = (int)Math.ceil((double)totalListSize/batchSize);
+		
+		//페이징 이후 return용 list 생성
+		List<ResponseArticle> resArticleList = new ArrayList<ResponseArticle>();
+		
+		//마지막 페이지가 아닐 경우
+		if(pageNumber != totalPage) {
+			for(int i=batchSize*(pageNumber-1); i<batchSize*pageNumber; i++) {
+				resArticleList.add(articleList.get(i));
+			}
+		}else {
+			for(int i=batchSize*(pageNumber-1); i<totalListSize;i++) {
+				resArticleList.add(articleList.get(i));
+			}
+		}
+		articleDAO.disconnectionDB();
+		return resArticleList;
 	}
 
 	public void createOneArticle(RequestArticle data) {
 		
 		ArticleDAO articleDAO = new ArticleDAO();
 		Article article = new Article();
-		
 		
 		article.setId(articleDAO.getMaxId() +1 );
 		
@@ -61,4 +82,11 @@ public class ArticleService {
 		return responseArticle;
 	}
 
+	public int getTotPage(int batchSize) {
+		ArticleDAO articleDAO = new ArticleDAO();
+		int totArticleNumber= articleDAO.getTotArticleNumber();
+		int totPage = (int)Math.ceil((double)totArticleNumber/batchSize);
+		articleDAO.disconnectionDB();
+		return totPage;
+	}
 }

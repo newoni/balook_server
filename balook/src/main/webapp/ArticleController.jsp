@@ -19,6 +19,12 @@
 		requestArticle.setAuthor(authorName);
 		articleService.createOneArticle(requestArticle);
 		
+		session.setAttribute("page","1");
+		%>
+		<script>location.replace("community.jsp")</script>
+		<%
+	}else if(request.getParameter("action").equals("pagination")){
+		session.setAttribute("page", request.getParameter("page"));
 		%>
 		<script>location.replace("community.jsp")</script>
 		<%
