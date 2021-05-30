@@ -23,3 +23,8 @@
     border-radius: 5px;
     padding:10px;
 }
+
+.div4editArticle{
+	display:flex;
+	justify-content: right;
+}

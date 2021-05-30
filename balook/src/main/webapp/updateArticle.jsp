@@ -61,7 +61,8 @@
                     <a href="./mainPageController.jsp">balook</a>
                 </div>
     
-                <form method="POST">
+                <form method="POST" action="ArticleController.jsp">
+                	<input type="hidden" name="action" value="update">
                     <div class="titleDiv">
                         <label for="title" >제목</label>
                         <input type="text" class="titleText" name="title" id="title">

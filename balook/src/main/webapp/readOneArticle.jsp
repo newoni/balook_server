@@ -71,6 +71,25 @@
             <div class="contents">
                 <%=responseArticle.getContents() %>
             </div>
+            <form type="POST" action="ArticleController.jsp">
+	            <input type="hidden" name="action" value="update">
+	            <input type="hidden" name="author" value="<%=responseArticle.getAuthor() %>">
+	            <input type="hidden" name="title" value="<%=responseArticle.getTitle()%>">
+	            <input type="hidden" name="contents" value="<%=responseArticle.getContents() %>">
+	            
+	            <script>
+	            	var author = "<%=responseArticle.getAuthor()%>";
+	            	var sessionId = "<%=session.getAttribute("id")%>";
+	            	if(author == sessionId){
+	            		document.write("<div class='div4editArticle'>");
+	            		
+		            		document.write("<input type='submit' value='수정하기'></input>");
+	    	        		document.write("<input type='submit' value='삭제하기'></input>");
+	            		
+	            		document.write("</div>");
+	            	}
+	            </script>
+            </form>
         </div>
     </section>
 

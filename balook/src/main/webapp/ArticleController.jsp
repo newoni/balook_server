@@ -28,6 +28,18 @@
 		%>
 		<script>location.replace("community.jsp")</script>
 		<%
+	}else if(request.getParameter("action").equals("updatePage")){
+		%>
+		<script>location.replace("updateArticle.jsp")</script>
+		<%
+	}else if(request.getParameter("action").equals("update")){
+		System.out.println("hello");
+		System.out.println(requestArticle.getAuthor());
+		System.out.println(requestArticle.getTitle());
+		System.out.println(requestArticle.getContents());
+		%>
+		<script>location.replace("community.jsp")</script>
+		<%
 	}
 %>
 
