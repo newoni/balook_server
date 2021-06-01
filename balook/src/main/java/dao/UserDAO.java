@@ -89,6 +89,7 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 		}
 		return user;
 	}
+	
 	public User findByUserIdAndPassword(RequestUser requestUser) {
 		User user = new User();
 		String query = "SELECT * FROM CUSTOMER WHERE USERID LIKE \'" + requestUser.getId() + "\' AND PASSWORD LIKE \'" + requestUser.getPassword() +"\'";
@@ -108,6 +109,13 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	public ResultSet findByNameAndPhoneAndEmail(User user) {
+		String query = "SELECT * FROM CUSTOMER WHERE NAME LIKE \'"+ user.getName() +"\' AND PHONE LIKE \'"+ user.getPhone() +"\' AND EMAIL LIKE \'"+ user.getEmail()+"\'";
+		
+		ResultSet resultSet = runSQL(query);
+		return resultSet;
 	}
 	
 	public int getMaxId() {

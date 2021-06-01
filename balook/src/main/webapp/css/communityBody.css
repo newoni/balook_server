@@ -5,7 +5,7 @@
     /* border: 1px solid black; */
     /*
     --check. <21.05.09>
-    필요없는 부분
+    �븘�슂�뾾�뒗 遺�遺�
     */
 
 }
@@ -37,7 +37,7 @@
     border-left: 3px solid #814d2e;
     /*
     --check. <21.05.09>
-    필요없는 부분
+    �븘�슂�뾾�뒗 遺�遺�
     */
 
     
@@ -81,7 +81,7 @@
 
     padding:5px;
     /* border: 1px solid black; */
-    /*--check. 해당 선은 필요 없긴하다*/
+    /*--check. �빐�떦 �꽑�� �븘�슂 �뾾湲댄븯�떎*/
 
     padding: 5px 10px;
 
@@ -119,6 +119,10 @@
     min-width: 35.2px;
 }
 
+.tbody a{
+	text-decoration: none;
+	color:black;
+}
 
 .communitySection td{
 }

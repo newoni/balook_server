@@ -15,7 +15,7 @@ body{
     
 
     border-radius: 25px;
-    background-color: gray; /*�깋源붿씠 蹂꾨줈�엫*/
+    background-color: gray; /*占쎄퉳繹먮뗄�뵠 癰귢쑬以덌옙�뿫*/
     opacity: 0.7;
     /*color reference: <21.05.09> by KH
     https://in.pinterest.com/pin/28006828920022766/?d=t&mt=login
@@ -125,7 +125,13 @@ body{
 }
 
 .phoneNumber{
-    width:100%;
+	padding:8px 12px; 
+	border-radius:8px;
+    width:91%;
+}
+
+.emailInput{
+	width:45%;
 }
 
 .eMail{

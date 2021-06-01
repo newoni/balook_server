@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="service.UserService" %>
-
 <%
 				request.setCharacterEncoding("UTF-8");
 %>
@@ -39,7 +38,29 @@
 			session.setAttribute("id", responseUser.getId());
 			response.sendRedirect("mainPageController.jsp");
 			}	
-	}else{
 		
+		//아이디 찾기
+	}else if(request.getParameter("action").equals("findId")){
+		
+		System.out.println(requestUser.getUserName());
+		System.out.println(requestUser.getPhoneNumber());
+		System.out.println(requestUser.getEmail());
+		System.out.println(requestUser.getDomain());
+		
+		UserService userService = new UserService();
+		responseUser = userService.findId(requestUser);
+		%>
+		<script>
+		alert("아이디는\n <%=responseUser.getId()%> \n 입니다");
+		location.replace("signIn.jsp");
+		</script>
+		<%
+		//비밀번호 찾기
+	}else if(request.getParameter("action").equals("findPw")){
+		System.out.println(requestUser.getId());
+		System.out.println(requestUser.getUserName());
+		System.out.println(requestUser.getPhoneNumber());
+		System.out.println(requestUser.getEmail());
+		System.out.println(requestUser.getDomain());
 	}
 %>

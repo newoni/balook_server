@@ -58,13 +58,27 @@ public class ArticleDAO extends BaseDAO implements DAO<Article>{
 
 	@Override
 	public void update(Article data) {
-		// TODO Auto-generated method stub
+		String query = "UPDATE ARTICLE SET TITLE=(?), CONTENTS=(?) WHERE ID=(?)";
+		try {
+			PreparedStatement prepared_statement = this.connection.prepareStatement(query);
+			prepared_statement.setString(1,  data.getTitle());
+			prepared_statement.setString(2, data.getContents());
+			prepared_statement.setInt(3, data.getId());
+			
+			prepared_statement.execute();
+			System.out.println("INSERT INTO ARTICLE 성공");
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.printf("%s", "INSERT INTO ARTICLE 비성공");
+			System.out.println();
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		String query = "DELETE FROM ARTICLE WHERE ID = " +id;
+		ResultSet resultSet4rowNumber = runSQL(query);
 	}
 	
 	public List<ResponseArticle> readAllArticle() {

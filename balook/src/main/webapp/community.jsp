@@ -27,10 +27,9 @@
 	//원하는 페이지 받아오고, 없을 경우 1페이지 출력 
 	
 	try{
-		String pageNumber = (String)session.getAttribute("page"); 
+		String pageNumber = (String)session.getAttribute("page");
 		articleList.setArticleList(articleService.readPageOfArticles(batchSize, Integer.parseInt(pageNumber)));
 	}catch(Exception e){
-		e.printStackTrace();
 		articleList.setArticleList(articleService.readPageOfArticles(batchSize, 1));
 	}
 	
@@ -113,17 +112,17 @@
                             <th>추천</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody">
                         
                     	<%for(ResponseArticle resArticle: articleList.getArticleList()){%>
                         	
 	                        <tr>
 	                        	<td><a href="readOneArticle.jsp?action=read&articleNumber=<%= resArticle.getNumber() %>">  <%= resArticle.getNumber() %> </a></td>
-	                        	<td><%= resArticle.getTitle() %></td>
-	                        	<td><%= resArticle.getAuthor() %></td>
-	                        	<td><%= resArticle.getDate() %></td>
-	                        	<td><%= 0 %></td>
-	                        	<td><%= 0 %></td>
+	                        	<td><a href="readOneArticle.jsp?action=read&articleNumber=<%= resArticle.getNumber() %>"><%= resArticle.getTitle() %></a></td>
+	                        	<td><a href="readOneArticle.jsp?action=read&articleNumber=<%= resArticle.getNumber() %>"><%= resArticle.getAuthor() %></a></td>
+	                        	<td><a href="readOneArticle.jsp?action=read&articleNumber=<%= resArticle.getNumber() %>"><%= resArticle.getDate() %></a></td>
+	                        	<td><a href="readOneArticle.jsp?action=read&articleNumber=<%= resArticle.getNumber() %>"><%= 0 %></a></td>
+	                        	<td><a href="readOneArticle.jsp?action=read&articleNumber=<%= resArticle.getNumber() %>"><%= 0 %></a></td>
 							</tr>
 							
 						

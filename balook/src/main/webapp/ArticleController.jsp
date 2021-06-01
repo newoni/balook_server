@@ -11,6 +11,7 @@
 <%
 	if(request.getParameter("action").equals("read")){
 		ArticleService articleService = new ArticleService();
+		session.setAttribute("articleNumber", Integer.parseInt(request.getParameter("articleNumber")));
 		responseArticle= articleService.readOneArticle(Integer.parseInt(request.getParameter("articleNumber")));
 		
 	}else if(request.getParameter("action").equals("create")){
@@ -29,17 +30,26 @@
 		<script>location.replace("community.jsp")</script>
 		<%
 	}else if(request.getParameter("action").equals("updatePage")){
+		session.setAttribute("articleTitle", requestArticle.getTitle());
+		session.setAttribute("articleContents",requestArticle.getContents());
+		
 		%>
 		<script>location.replace("updateArticle.jsp")</script>
 		<%
 	}else if(request.getParameter("action").equals("update")){
-		System.out.println("hello");
-		System.out.println(requestArticle.getAuthor());
-		System.out.println(requestArticle.getTitle());
-		System.out.println(requestArticle.getContents());
+		ArticleService articleService = new ArticleService();
+		int id = (Integer)session.getAttribute("articleNumber");
+		articleService.updateOneArticle(id, requestArticle);
+		
+		
+		%>
+		<script>location.replace("community.jsp")</script>
+		<%
+	}else if(request.getParameter("action").equals("delete")){
+		ArticleService articleService = new ArticleService();
+		articleService.deleteOneArticle((Integer)session.getAttribute("articleNumber"));
 		%>
 		<script>location.replace("community.jsp")</script>
 		<%
 	}
 %>
-

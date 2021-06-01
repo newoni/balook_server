@@ -82,11 +82,31 @@ public class ArticleService {
 		return responseArticle;
 	}
 
+	public void updateOneArticle(int id, RequestArticle data) {
+		ArticleDAO articleDAO = new ArticleDAO();
+		Article article = new Article();
+		System.out.println("(service) data title°ª: " + data.getTitle());
+		System.out.println("(service) data contents°ª: " + data.getContents());
+		System.out.println("(service) id°ª :" + id);
+		
+		article.setId(id);
+		article.setTitle(data.getTitle());
+		article.setContents(data.getContents());
+		articleDAO.update(article);
+		articleDAO.disconnectionDB();
+	}
+	
 	public int getTotPage(int batchSize) {
 		ArticleDAO articleDAO = new ArticleDAO();
 		int totArticleNumber= articleDAO.getTotArticleNumber();
 		int totPage = (int)Math.ceil((double)totArticleNumber/batchSize);
 		articleDAO.disconnectionDB();
 		return totPage;
+	}
+	
+	public void deleteOneArticle(int id) {
+		ArticleDAO articleDAO = new ArticleDAO();
+		articleDAO.delete(id);
+		articleDAO.disconnectionDB();
 	}
 }

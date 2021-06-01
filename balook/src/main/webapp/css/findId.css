@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body{
     background-image: url("../img/page/IS7drN.png");
     background-size:cover;
@@ -7,18 +9,19 @@ body{
     justify-content: center;
 }
 
-.signInBody{
-    width: 396px;
+.findIdBody{
+	width: 396px;
     display:flex;
     flex-direction: column;
 
     border-radius: 25px;
-    background-color: gray; 
+    background-color: gray; /*�깋源붿씠 蹂꾨줈�엫*/
     opacity: 0.7;
     /*color reference: <21.05.09> by KH
     https://in.pinterest.com/pin/28006828920022766/?d=t&mt=login
     */
 }
+
 .inputFlex{
     display: flex;   
     flex-direction: column;
@@ -43,7 +46,6 @@ body{
     color:white;
 }
 
-
 .inputUnit{
     padding:14px 5px;
     margin: 0 26px;
@@ -61,12 +63,32 @@ body{
     margin-bottom: 10px;
 }
 
-.inputIDPW{
+.inputFormat{
     padding:8px 12px; 
     border-radius:8px;
 }
 
-.logInButton{
+.emailInput{
+	width:45%;
+}
+
+.eMail{
+    display:flex;
+    flex-direction: column;
+    color:white;
+}
+
+.eMail label{
+    margin-top:20px;
+    margin-bottom:10px;
+}
+
+.eMailInput{
+    display: flex;
+    justify-content: space-between;
+}
+
+.findIdBtn{
     width:100%;
     color:black;
     font-size: 25px;
@@ -79,22 +101,8 @@ body{
 
     margin: 5px auto;
 
+    margin-bottom: 30px;
+
     
     font-family: 'Nanum Pen Script', cursive;
 }
-
-.checkingUserBox{
-    display:flex;
-    list-style: none;
-    justify-content: space-around  ;
-    padding:0;
-
-    margin-top:20px;
-    margin-bottom: 20px;
-}
-
-.checkingUserBox a{
-	text-decoration: none;
-	color:black;
-}
-

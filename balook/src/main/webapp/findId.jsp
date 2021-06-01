@@ -13,8 +13,7 @@
 
     <!-- css 연결 -->
     <link rel="stylesheet" type="text/css" href="css/container.css">
-    <link rel="stylesheet" type="text/css" href="css/signIn.css">
-
+    <link rel="stylesheet" type="text/css" href="css/findId.css">
 
     <!-- og tag 넣기 -->
     <meta property="og:image" content="./img/page/p2Uy3c.jpg"> <!-- check og image 들어가는지 확인해보기-->
@@ -32,43 +31,48 @@
 <!-- color reference: https://in.pinterest.com/pin/28006828920022766/?d=t&mt=login -->
 
 
-    <div class="signInBody">
+    <div class="findIdBody">
 
         <div class="logo">
             <i class="fas fa-dice"></i>
             <a href="./index.jsp">balook</a>
         </div>
         
-            
         <form method="POST" action="UserController.jsp">
-        	<input type="hidden" name="action" value="signIn">
+        	<input type="hidden" name="action" value="findId">
             <div class="inputFlex">
                 
                 <div class="inputUnit">
                     
                     <div class="rowFlex">
-                        <label for="id" >ID</label>
-                        <input type="text" name="id" id="id" class="inputIDPW" autocomplete="off" required>
+                        <label for="userName" >이름</label>
+                        <input type="text" name="userName" id="userName" class="inputFormat" autocomplete="off" required>
                     </div>
-                    
                 
                     <div class="rowFlex">
-                    <label for="password">PASSWORD</label>
-                    <input type="password" name="password" id="password" class="inputIDPW" autocomplete="off" required>
+                   		<label for="phoneNumber">전화번호</label>
+                    	<input type="text" name="phoneNumber" id="phoneNumber" class="inputFormat" autocomplete="off" required>
                     </div>
+                    
+                    <div class="eMail">
+                            <label for="email">이메일</label>
+                            <div class="eMailInput">
+                                <input type="text" name="email" id="email" class="inputFormat emailInput" autocomplete="off" required>
+                                <p>  @  </p>
+                                <select name="domain">
+                                    <option value="">--이메일 선택--</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="google.com">google.com</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="nate.com">nate.com</option>
+                                </select>
+                            </div> 
+                        </div>
                 </div>
-                
             </div>
-            <button id="btn" type="submit" class="logInButton">LOGIN</button>
-
+			<button id="btn" type="submit" class="findIdBtn">아이디 찾기</button>
 
         </form>
-        
-        <ul class="checkingUserBox">
-            <li><a href = "findId.jsp">아이디 찾기</a></li>
-            <li><a href = "findPw.jsp">비밀번호 찾기</a></li>
-            <li><a href = "signUp.jsp">회원가입</a></li>
-        </ul>
     
     </div>
 </body>

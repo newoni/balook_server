@@ -65,12 +65,12 @@
                 	<input type="hidden" name="action" value="update">
                     <div class="titleDiv">
                         <label for="title" >제목</label>
-                        <input type="text" class="titleText" name="title" id="title">
+                        <input type="text" class="titleText" name="title" id="title" value="<%=(String)session.getAttribute("articleTitle") %>">
                     </div>
     
                     <div class="contentsDiv">
                         <label for="contents">내용</label>
-                        <textarea name="contents" id="contents" class="contentsArea">내용을 입력해주세요</textarea>
+                        <textarea name="contents" id="contents" class="contentsArea"><%=(String) session.getAttribute("articleContents") %></textarea>
                     </div>
     
                     <input type="submit" class="submitBtn" value="수정">

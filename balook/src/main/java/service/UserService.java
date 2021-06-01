@@ -1,5 +1,8 @@
 package service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import dao.UserDAO;
 import dto.RequestUser;
 import dto.ResponseUser;
@@ -32,5 +35,27 @@ public class UserService {
 		user.setEmail(requestUser.getEmail() +"@" + requestUser.getDomain());
 		
 		userDAO.create(user);
+	}
+
+	public ResponseUser findId(RequestUser requestUser) {
+		User user = new User();
+		
+		user.setName(requestUser.getUserName());
+		user.setPhone(requestUser.getPhoneNumber());
+		user.setEmail(requestUser.getEmail()+ "@" + requestUser.getDomain());;
+		
+		UserDAO userDAO = new UserDAO();
+		ResultSet resultSet = userDAO.findByNameAndPhoneAndEmail(user);
+		
+		ResponseUser responseUser = new ResponseUser();
+		
+		try {
+			resultSet.next();
+			responseUser.setId(resultSet.getString(2));
+			System.out.println("아이디 검색 결과:"+ responseUser.getId());
+		} catch (SQLException e) {
+		}
+		userDAO.disconnectionDB();
+		return responseUser;
 	}
 }

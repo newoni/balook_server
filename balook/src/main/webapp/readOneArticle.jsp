@@ -72,7 +72,7 @@
                 <%=responseArticle.getContents() %>
             </div>
             <form type="POST" action="ArticleController.jsp">
-	            <input type="hidden" name="action" value="update">
+	            <input type="hidden" name="action" value="updatePage">
 	            <input type="hidden" name="author" value="<%=responseArticle.getAuthor() %>">
 	            <input type="hidden" name="title" value="<%=responseArticle.getTitle()%>">
 	            <input type="hidden" name="contents" value="<%=responseArticle.getContents() %>">
@@ -84,7 +84,7 @@
 	            		document.write("<div class='div4editArticle'>");
 	            		
 		            		document.write("<input type='submit' value='수정하기'></input>");
-	    	        		document.write("<input type='submit' value='삭제하기'></input>");
+	    	        		document.write("<div><a href='ArticleController.jsp?action=delete'>삭제하기</a></div>");
 	            		
 	            		document.write("</div>");
 	            	}

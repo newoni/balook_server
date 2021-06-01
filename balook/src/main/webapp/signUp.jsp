@@ -65,7 +65,7 @@
                         <div class="eMail">
                             <label for="email">이메일</label>
                             <div class="eMailInput">
-                                <input type="text" name="email" id="email" class="email" autocomplete="off" required>
+                                <input type="text" name="email" id="email" class="emailInput inputFormat" autocomplete="off" required>
                                 <p>  @  </p>
                                 <select name="domain">
                                     <option value="">--이메일 선택--</option>
