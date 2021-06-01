@@ -53,7 +53,6 @@
 		<%
 	}else if(request.getParameter("action").equals("changeArticleNumber")){
 		session.setAttribute("batch", request.getParameter("batchNumber"));
-		
 		%>
 		<script>location.replace("../page/community.jsp")</script>
 		<%

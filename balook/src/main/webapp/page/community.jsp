@@ -26,6 +26,7 @@
 	}catch(Exception e){
 		batchSize = 20;
 	}
+	System.out.println(batchSize);
 	String userId = (String)session.getAttribute("id");
 	
 	//전체 페이지 받아오기
@@ -108,8 +109,9 @@
         <div class="div4Absolute">
             <section class="communitySection">
             	<select onchange="if(this.value) location.href=(this.value);" class=articleBatch>
+            		<option selected="true">갯수<option>
             		<option value="../controller/ArticleController.jsp?action=changeArticleNumber&batchNumber=10">10개</option>
-            		<option selected="true" value="../controller/ArticleController.jsp?action=changeArticleNumber&batchNumber=20">20개</option>
+            		<option value="../controller/ArticleController.jsp?action=changeArticleNumber&batchNumber=20">20개</option>
             		<option value="../controller/ArticleController.jsp?action=changeArticleNumber&batchNumber=50">50개</option>
             	</select>
                 <table>
