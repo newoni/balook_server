@@ -9,14 +9,14 @@
     <title>로그인 페이지</title>
 
     <!-- favicon 넣기 -->
-    <link rel="shortcut icon" href="./img/favicon/다운로드.png">
+    <link rel="shortcut icon" href="../img/favicon/다운로드.png">
 
     <!-- css 연결 -->
-    <link rel="stylesheet" type="text/css" href="css/container.css">
-    <link rel="stylesheet" type="text/css" href="css/findPw.css">
+    <link rel="stylesheet" type="text/css" href="../css/container.css">
+    <link rel="stylesheet" type="text/css" href="../css/findId.css">
 
     <!-- og tag 넣기 -->
-    <meta property="og:image" content="./img/page/p2Uy3c.jpg"> <!-- check og image 들어가는지 확인해보기-->
+    <meta property="og:image" content="../img/page/p2Uy3c.jpg"> <!-- check og image 들어가는지 확인해보기-->
     <meta property="og:title" content="함께 즐기는 바둑 플랫폼 Balook 로그인">
     <meta property="og:description" content="Balook 로그인 페이지입니다">
 
@@ -35,18 +35,14 @@
 
         <div class="logo">
             <i class="fas fa-dice"></i>
-            <a href="./index.jsp">balook</a>
+            <a href="../index.jsp">balook</a>
         </div>
         
-        <form method="POST" action="UserController.jsp">
-        	<input type="hidden" name="action" value="findPw">
+        <form method="POST" action="../controller/UserController.jsp">
+        	<input type="hidden" name="action" value="findId">
             <div class="inputFlex">
                 
                 <div class="inputUnit">
-                    <div class="rowFlex">
-                        <label for="id" >아이디</label>
-                        <input type="text" name="id" id="id" class="inputFormat" autocomplete="off" required>
-                    </div>
                     
                     <div class="rowFlex">
                         <label for="userName" >이름</label>
@@ -72,12 +68,12 @@
                                 </select>
                             </div> 
                         </div>
-                
                 </div>
             </div>
-			<button id="btn" type="submit" class="findIdBtn">비밀번호 찾기</button>
+			<button id="btn" type="submit" class="findIdBtn">아이디 찾기</button>
 
         </form>
+    
     </div>
 </body>
 </html>

@@ -10,6 +10,12 @@
 
 }
 
+.articleBatch{
+	height:18px;
+	float:right;
+	margin-top:50px;
+}
+
 .div4Absolute{
     position:absolute;
     top:55px;
@@ -86,10 +92,13 @@
     padding: 5px 10px;
 
     height: 100vh;
+    
+    /*
     display:flex;
     flex-wrap: wrap;
     
     align-items: center;
+    */
     z-index:-1;
 }
 
@@ -152,7 +161,7 @@
 }
 
 .board{
-    margin:5px auto;
+    margin:62px auto;
 }
 
 @media screen and (max-width:768px) {

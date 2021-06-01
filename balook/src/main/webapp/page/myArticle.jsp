@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="dto.ResponseArticle"%>
 <%@page import="service.ArticleService" %>
+<%@page import="service.UserService" %>
 <jsp:useBean id="articleList" class="dto.ResponseArticleList"/>
 <% 
 	//로그인 확인 
@@ -10,7 +11,7 @@
 	
 	<script>
 	alert("로그인이 필요한 서비스입니다");
-	location.replace("mainPageController.jsp");
+	location.replace("../controller/mainPageController.jsp");
 	</script>
 
 <%
@@ -18,19 +19,25 @@
 	%>
 	
 <%
-	//article 관련 서비스 불러오기
+	//내 게시물 서비스 불러오기
 	ArticleService articleService = new ArticleService();
-	int batchSize = 20;
+	
+	int batchSize;
+	try{
+		batchSize = Integer.parseInt((String)session.getAttribute("batch"));
+	}catch(Exception e){
+		batchSize = 20;
+	}
+	String userId = (String)session.getAttribute("id");
 
 	//전체 페이지 받아오기
-	int totPage = articleService.getTotPage(batchSize);
+	int totPage = articleService.getMyTotPage(batchSize, userId);
 	//원하는 페이지 받아오고, 없을 경우 1페이지 출력 
-	
 	try{
 		String pageNumber = (String)session.getAttribute("page");
-		articleList.setArticleList(articleService.readPageOfArticles(batchSize, Integer.parseInt(pageNumber)));
+		articleList.setArticleList(articleService.readPageOfMyArticles(batchSize, Integer.parseInt(pageNumber), userId));
 	}catch(Exception e){
-		articleList.setArticleList(articleService.readPageOfArticles(batchSize, 1));
+		articleList.setArticleList(articleService.readPageOfMyArticles(batchSize, 1, userId));
 	}
 	
 %>
@@ -49,24 +56,23 @@
     <meta name="description" content="함께 즐기는 바둑 플랫폼 Balook 입니다">
 
     <!-- og tag 넣기 -->
-    <meta property="og:image" content="./img/page/p2Uy3c.jpg"> 
+    <meta property="og:image" content="../img/page/p2Uy3c.jpg"> 
     <meta property="og:title" content="함께 즐기는 바둑 플랫폼 Balook">
     <meta property="og:description" content="함께 즐기는 바둑 플랫폼 Balook 입니다">
 
     <!-- favicon 넣기 -->
-    <link rel="shortcut icon" href="./img/favicon/다운로드.png">
+    <link rel="shortcut icon" href="../img/favicon/다운로드.png">
 
     <!-- css 연결 -->
-    <link rel="stylesheet" type="text/css" href="css/container.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../css/container.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
 
-    <link rel="stylesheet" type="text/css" href="css/communityBody.css">
+    <link rel="stylesheet" type="text/css" href="../css/communityBody.css">
 
     <!-- js 연결-->
-    <script src="./js/menuBtn.js" defer></script>
-    <script src="./js/alert.js" defer></script>
-    <script src="./js/request.js" defer></script>
+    <script src="../js/menuBtn.js" defer></script>
+    <script src="../js/alert.js" defer></script>
 
     <!-- 구글 폰트 연결-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -80,10 +86,10 @@
       <div class="navbar">
         <div class="navbar__logo">
             <i class="fas fa-dice"></i>
-            <a href="./mainPageController.jsp">balook</a>
+            <a href="../controller/mainPageController.jsp">balook</a>
         </div>
         <ul class="navbar__menu">
-            <li><a href="./mainPageController.jsp">Home</a></li>
+            <li><a href="../controller/mainPageController.jsp">Home</a></li>
             <li><a href="./community.jsp">Community</a></li>
             <li><a href="#" onclick= "tmpMessage()">test</a></li>
             <li><a href="#" onclick= "tmpMessage()">test2</a></li>
@@ -91,7 +97,7 @@
         </ul> 
         <ul class="navbar__links">
             <li><%=session.getAttribute("id") %> 님 환영합니다</li>
-            <li><a href="./mainPageController.jsp?action=signOut">sign-out</a></li>
+            <li><a href="../controller/mainPageController.jsp?action=signOut">sign-out</a></li>
         </ul>
 
         <a href="#" class="navbar__toggleBtn"><i class="fas fa-bars"></i></a>    
@@ -101,6 +107,11 @@
     <div class="communityContainer">  
         <div class="div4Absolute">
             <section class="communitySection">
+            	<select onchange="if(this.value) location.href=(this.value);" class=articleBatch>
+            		<option value="../controller/ArticleController.jsp?action=changeArticleNumber&batchNumber=10">10개</option>
+            		<option selected="true" value="../controller/ArticleController.jsp?action=changeArticleNumber&batchNumber=20">20개</option>
+            		<option value="../controller/ArticleController.jsp?action=changeArticleNumber&batchNumber=50">50개</option>
+            	</select>
                 <table>
                     <thead>
                         <tr>
@@ -137,7 +148,7 @@
                     <ul class="pagenation">
                         <script>
                         	for(var i=1; i<= <%=totPage%> ; i++){
-                        		document.write("<li><a href='ArticleController.jsp?action=pagination&page="+i +"''>"+ i + "</a></li>");
+                        		document.write("<li><a href='../controller/ArticleController.jsp?action=pagination&page="+i +"''>"+ i + "</a></li>");
                         	}
                     	</script>
                     </ul>
@@ -145,14 +156,16 @@
             </section>
 
             <aside class="communitySideBar">
+            	<!-- 현재 구현 안한 관계로 잠시 주석처리 -->
+            	<!-- 
                 <ul class="articleBoard">
                     <li>전체 게시물</li>
                     <li>인기 게시물</li>
                 </ul>
+                 -->
 
                 <div class="board">
                     <button class="sideBarBtn" onclick= "location='insertArticle.jsp'"> 글쓰기</button>
-                    <button class="sideBarBtn" onclick= "tmpMessage()"> 내 게시물</button>
                 </div>
             </aside>
         </div>
@@ -163,11 +176,11 @@
         <div class="footerBox">
             <div class="footerLogo">
                 <i class="fas fa-dice"></i>
-                <a href="./mainPageController.jsp">balook</a>
+                <a href="../controller/mainPageController.jsp">balook</a>
             </div>
 
             <ul class="footerMenu">
-                <li><a href="./mainPageController.jsp">Home</a></li>
+                <li><a href="../controller/mainPageController.jsp">Home</a></li>
                 <li><a href="./community.jsp">Community</a></li>
                 <li><a href="#">test1</a></li>
                 <li><a href="#">test2</a></li>

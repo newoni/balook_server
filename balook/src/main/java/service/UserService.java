@@ -52,8 +52,31 @@ public class UserService {
 		try {
 			resultSet.next();
 			responseUser.setId(resultSet.getString(2));
-			System.out.println("아이디 검색 결과:"+ responseUser.getId());
 		} catch (SQLException e) {
+		}
+		userDAO.disconnectionDB();
+		return responseUser;
+	}
+	
+	public ResponseUser findPw(RequestUser requestUser) {
+		User user = new User();
+		
+		user.setUserId(requestUser.getId());
+		user.setName(requestUser.getUserName());
+		user.setPhone(requestUser.getPhoneNumber());
+		user.setEmail(requestUser.getEmail()+ "@" + requestUser.getDomain());
+		
+		UserDAO userDAO = new UserDAO();
+		ResultSet resultSet = userDAO.findByUserIdAndNameAndPhoneAndEmail(user);
+		
+		ResponseUser responseUser = new ResponseUser();
+		
+		try {
+			resultSet.next();
+			responseUser.setPassword(resultSet.getString(3));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		userDAO.disconnectionDB();
 		return responseUser;

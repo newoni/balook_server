@@ -14,8 +14,8 @@
 
 
 	if(session.getAttribute("id")==null){
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("../index.jsp");
 	}else{
-		response.sendRedirect("indexAfterSignIn.jsp");
+		response.sendRedirect("../page/indexAfterSignIn.jsp");
 	}
 %>

@@ -38,7 +38,7 @@ public class ArticleService {
 		articleDAO.disconnectionDB();
 		return resArticleList;
 	}
-
+	
 	public void createOneArticle(RequestArticle data) {
 		
 		ArticleDAO articleDAO = new ArticleDAO();
@@ -51,7 +51,7 @@ public class ArticleService {
 		User user = userDAO.findByUserId(data.getAuthor());
 		article.setAuthor(user.getId());
 		
-		System.out.println(data.getAuthor());
+		//System.out.println(data.getAuthor());
 		userDAO.disconnectionDB();
 		
 		article.setTitle(data.getTitle());
@@ -85,9 +85,6 @@ public class ArticleService {
 	public void updateOneArticle(int id, RequestArticle data) {
 		ArticleDAO articleDAO = new ArticleDAO();
 		Article article = new Article();
-		System.out.println("(service) data title값: " + data.getTitle());
-		System.out.println("(service) data contents값: " + data.getContents());
-		System.out.println("(service) id값 :" + id);
 		
 		article.setId(id);
 		article.setTitle(data.getTitle());
@@ -108,5 +105,45 @@ public class ArticleService {
 		ArticleDAO articleDAO = new ArticleDAO();
 		articleDAO.delete(id);
 		articleDAO.disconnectionDB();
+	}
+
+	public List<ResponseArticle> readPageOfMyArticles(int batchSize, Integer pageNumber, String userId){
+		ArticleDAO articleDAO = new ArticleDAO();
+		
+		//전체 article list read
+		List<ResponseArticle> articleList =  articleDAO.readMyAllArticle(userId);
+		
+		int totalListSize = articleList.size();
+		
+		//게시글이 없을 경우
+		if(totalListSize == 0 ) {
+			return articleList;
+		}
+		
+		int totalPage = (int)Math.ceil((double)totalListSize/batchSize);
+		
+		//페이징 이후 return용 list 생성
+		List<ResponseArticle> resArticleList = new ArrayList<ResponseArticle>();
+		
+		//마지막 페이지가 아닐 경우
+		if(pageNumber != totalPage) {
+			for(int i=batchSize*(pageNumber-1); i<batchSize*pageNumber; i++) {
+				resArticleList.add(articleList.get(i));
+			}
+		}else {
+			for(int i=batchSize*(pageNumber-1); i<totalListSize;i++) {
+				resArticleList.add(articleList.get(i));
+			}
+		}
+		articleDAO.disconnectionDB();
+		return resArticleList;
+	}
+	
+	public int getMyTotPage(int batchSize, String userId) {
+		ArticleDAO articleDAO = new ArticleDAO();
+		int totArticleNumber= articleDAO.getMyTotArticleNumber(userId);
+		int totPage = (int)Math.ceil((double)totArticleNumber/batchSize);
+		articleDAO.disconnectionDB();
+		return totPage;
 	}
 }

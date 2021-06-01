@@ -21,24 +21,24 @@ public abstract class BaseDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 //			System.out.printf("%s \r\n", "드라이버가 로드 되었습니다.");
-			System.out.println();
+			//System.out.println();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 //			System.out.printf("%s \r\n", "드라이버가 로드 안 되었습니다.");
-			System.out.println();
+			//System.out.println();
 		}
 		
 //		DB 연결
 		try {
 			this.connection = DriverManager.getConnection(URL, USERID, PASSWORD);
 //			System.out.printf("%s \r\n", "데이터 베이스 연결 성공");
-			System.out.println();
+			//System.out.println();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 //			System.out.printf("%s \r\n", "데이터 베이스 연결 비성공");
-			System.out.println();
+			//System.out.println();
 		}
 	}
 	
@@ -51,18 +51,18 @@ public abstract class BaseDAO {
 			this.statement = this.connection.createStatement();
 			
 //			System.out.println("DB 서버에서 응답을 했어요.");
-			System.out.println();
+			//System.out.println();
 			result_set = this.statement.executeQuery(query);
 			
 			//--check. 속성 갯수 출력
 			ResultSetMetaData rsmd = result_set.getMetaData();
-			System.out.println(rsmd.getColumnCount());
+			//System.out.println(rsmd.getColumnCount());
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 //			System.out.println("DB 서버에서 응답을 안 보냈어요.");
-			System.out.println();
+			//System.out.println();
 			
 		}
 		
@@ -74,12 +74,12 @@ public abstract class BaseDAO {
 		try {
 			this.connection.close();
 //			System.out.printf("%s \r\n", "DB 연결 성공적으로 해제");
-			System.out.println();
+			//System.out.println();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 //			System.out.printf("%s \r\n", "DB 연결 해제 실패");
-			System.out.println();
+			//System.out.println();
 		}
 	}
 

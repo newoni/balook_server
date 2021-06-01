@@ -14,18 +14,18 @@
     <meta name="description" content="함께 즐기는 바둑 플랫폼 Balook 메인페이지입니다.">
 
     <!-- og tag 넣기 -->
-    <meta property="og:image" content="./img/page/p2Uy3c.jpg"> <!-- check og image 들어가는지 확인해보기-->
+    <meta property="og:image" content="../img/page/p2Uy3c.jpg"> <!-- check og image 들어가는지 확인해보기-->
     <meta property="og:title" content="함께 즐기는 바둑 플랫폼 Balook">
     <meta property="og:description" content="함께 즐기는 바둑 플랫폼 Balook 메인페이지입니다..">
 
     <!-- favicon 넣기 -->
-    <link rel="shortcut icon" href="./img/favicon/다운로드.png">
+    <link rel="shortcut icon" href="../img/favicon/다운로드.png">
 
     <!-- css 연결 -->
-    <link rel="stylesheet" type="text/css" href="css/container.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css">
-    <link rel="stylesheet" type="text/css" href="css/section.css">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../css/container.css">
+    <link rel="stylesheet" type="text/css" href="../css/header.css">
+    <link rel="stylesheet" type="text/css" href="../css/section.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
 
     <!-- 구글 폰트 연결-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -40,10 +40,10 @@
       <div class="navbar">
         <div class="navbar__logo">
             <i class="fas fa-dice"></i>
-            <a href="./mainPageController.jsp">balook</a>
+            <a href="../controller/mainPageController.jsp">balook</a>
         </div>
         <ul class="navbar__menu">
-            <li><a href="./mainPageController.jsp">Home</a></li>
+            <li><a href="../controller/mainPageController.jsp">Home</a></li>
             <li><a href="./community.jsp">Community</a></li>
             <li><a href="#" onclick= "tmpMessage()">test</a></li>
             <li><a href="#" onclick= "tmpMessage()">test2</a></li>
@@ -51,7 +51,7 @@
         </ul>
         <ul class="navbar__links">
             <li><%=session.getAttribute("id") %> 님 환영합니다</li>
-            <li><a href="./mainPageController.jsp?action=signOut">sign-out</a></li>
+            <li><a href="../controller/mainPageController.jsp?action=signOut">sign-out</a></li>
         </ul>
 
         <a href="#" class="navbar__toggleBtn"><i class="fas fa-bars"></i></a>    
@@ -62,9 +62,9 @@
         
         <div class=middle>
             
-            <img src="img/page/cTGA3I.jpg" class="img4pc">
-            <img src="img/page/img4M.jpg" class="img4mobile">
-            <img src="img/page/img4Pad.jpg" class="img4pad">
+            <img src="../img/page/cTGA3I.jpg" class="img4pc">
+            <img src="../img/page/img4M.jpg" class="img4mobile">
+            <img src="../img/page/img4Pad.jpg" class="img4pad">
             <div class="textBoxOuter">
                 <p>Community for Baduk</p>
             </div>
@@ -80,11 +80,11 @@
         <div class="footerBox">
             <div class="footerLogo">
                 <i class="fas fa-dice"></i>
-                <a href="./mainPageController.jsp">balook</a>
+                <a href="../controller/mainPageController.jsp">balook</a>
             </div>
 
             <ul class="footerMenu">
-                <li><a href="./mainPageController.jsp"></a>Home</a></li>
+                <li><a href="../controller/mainPageController.jsp"></a>Home</a></li>
                 <li><a href="./community.jsp"></a>Community</a></li>
                 <li><a href="#"></a>test1</a></li>
                 <li><a href="#"></a>test2</a></li>
@@ -105,8 +105,8 @@
     </footer>
 
     <!-- js 연결-->
-    <script src="./js/menuBtn.js" defer></script>
-    <script src="./js/alert.js" defer></script>
+    <script src="../js/menuBtn.js" defer></script>
+    <script src="../js/alert.js" defer></script>
 </body>
 
   

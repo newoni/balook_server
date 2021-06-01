@@ -22,19 +22,19 @@
 		
 		session.setAttribute("page","1");
 		%>
-		<script>location.replace("community.jsp")</script>
+		<script>location.replace("../page/community.jsp")</script>
 		<%
 	}else if(request.getParameter("action").equals("pagination")){
 		session.setAttribute("page", request.getParameter("page"));
 		%>
-		<script>location.replace("community.jsp")</script>
+		<script>location.replace("../page/community.jsp")</script>
 		<%
 	}else if(request.getParameter("action").equals("updatePage")){
 		session.setAttribute("articleTitle", requestArticle.getTitle());
 		session.setAttribute("articleContents",requestArticle.getContents());
 		
 		%>
-		<script>location.replace("updateArticle.jsp")</script>
+		<script>location.replace("../page/updateArticle.jsp")</script>
 		<%
 	}else if(request.getParameter("action").equals("update")){
 		ArticleService articleService = new ArticleService();
@@ -43,13 +43,20 @@
 		
 		
 		%>
-		<script>location.replace("community.jsp")</script>
+		<script>location.replace("../page/community.jsp")</script>
 		<%
 	}else if(request.getParameter("action").equals("delete")){
 		ArticleService articleService = new ArticleService();
 		articleService.deleteOneArticle((Integer)session.getAttribute("articleNumber"));
 		%>
-		<script>location.replace("community.jsp")</script>
+		<script>location.replace("../page/community.jsp")</script>
+		<%
+	}else if(request.getParameter("action").equals("changeArticleNumber")){
+		session.setAttribute("batch", request.getParameter("batchNumber"));
+		
+		%>
+		<script>location.replace("../page/community.jsp")</script>
 		<%
 	}
+
 %>

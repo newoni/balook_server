@@ -10,7 +10,7 @@ function alertMessage(message) {
 
 
 function tmpMessage(){
-    let msg = "안녕하세요";
+    let msg = "준비중인 서비스입니다!";
     alertMessage(msg);
 }
 

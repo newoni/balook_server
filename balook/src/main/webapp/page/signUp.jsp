@@ -9,19 +9,19 @@
     <title>balook 회원가입</title>
 
     <!-- favicon 넣기 -->
-    <link rel="shortcut icon" href="./img/favicon/다운로드.png">
+    <link rel="shortcut icon" href="../img/favicon/다운로드.png">
 
     <meta name="title" content="balook 회원가입 페이지">
     <meta name="description" content="balook 회원가입 페이지 입니다.">
 
     <!-- og tag 넣기 -->
-    <meta property="og:image" content="./img/page/p2Uy3c.jpg"> <!-- check og image 들어가는지 확인해보기-->
+    <meta property="og:image" content="../img/page/p2Uy3c.jpg"> <!-- check og image 들어가는지 확인해보기-->
     <meta property="og:title" content="함께 즐기는 바둑 플랫폼 Balook 회원가입">
     <meta property="og:description" content="Balook 회원가입 페이지입니다">
 
     <!-- css 연결 -->
-    <link rel="stylesheet" type="text/css" href="css/container.css">
-    <link rel="stylesheet" type="text/css" href="css/signUp.css">
+    <link rel="stylesheet" type="text/css" href="../css/container.css">
+    <link rel="stylesheet" type="text/css" href="../css/signUp.css">
 
     <!-- 구글 폰트 연결-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -35,10 +35,10 @@
         <div class="signUpBody">
             <div class="logo">
                 <i class="fas fa-dice"></i>
-                <a href="./index.jsp">balook</a>
+                <a href="../index.jsp">balook</a>
             </div>
 
-            <form method="POST" action="UserController.jsp">
+            <form method="POST" action="../controller/UserController.jsp">
             	<input type="hidden" name="action" id="action" value="signUp">
                 <div class="inputClass">
                     <div class="signUpId">

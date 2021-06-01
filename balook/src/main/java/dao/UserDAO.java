@@ -22,14 +22,14 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 			prepared_statement.setString(5, data.getPhone());
 			prepared_statement.setString(6, data.getEmail());
 			prepared_statement.execute();
-			System.out.println("INSERT INTO CUSTOMER 성공");
-			System.out.println();
+			//System.out.println("INSERT INTO CUSTOMER 성공");
+			//System.out.println();
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.printf("%s", "INSERT INTO CUSTOMER 비성공");
-			System.out.println();
+			//System.out.printf("%s", "INSERT INTO CUSTOMER 비성공");
+			//System.out.println();
 		}
 		
 	}
@@ -113,6 +113,13 @@ public class UserDAO extends BaseDAO implements DAO<entity.User> {
 
 	public ResultSet findByNameAndPhoneAndEmail(User user) {
 		String query = "SELECT * FROM CUSTOMER WHERE NAME LIKE \'"+ user.getName() +"\' AND PHONE LIKE \'"+ user.getPhone() +"\' AND EMAIL LIKE \'"+ user.getEmail()+"\'";
+		
+		ResultSet resultSet = runSQL(query);
+		return resultSet;
+	}
+	
+	public ResultSet findByUserIdAndNameAndPhoneAndEmail(User user) {
+		String query = "SELECT * FROM CUSTOMER WHERE USERID LIKE \'" + user.getUserId() + "\' AND NAME LIKE \'"+ user.getName() +"\' AND PHONE LIKE \'"+ user.getPhone() +"\' AND EMAIL LIKE \'"+ user.getEmail() + "\'";
 		
 		ResultSet resultSet = runSQL(query);
 		return resultSet;

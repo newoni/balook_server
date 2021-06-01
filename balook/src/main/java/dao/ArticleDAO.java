@@ -25,12 +25,12 @@ public class ArticleDAO extends BaseDAO implements DAO<Article>{
 			prepared_statement.setDate(5, Date.valueOf(data.getBoardTime()));
 			
 			prepared_statement.execute();
-			System.out.println("INSERT INTO ARTICLE 성공");
+			//System.out.println("INSERT INTO ARTICLE 성공");
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.printf("%s", "INSERT INTO ARTICLE 비성공");
-			System.out.println();
+			//System.out.printf("%s", "INSERT INTO ARTICLE 비성공");
+			//System.out.println();
 		}
 		
 	}
@@ -66,12 +66,12 @@ public class ArticleDAO extends BaseDAO implements DAO<Article>{
 			prepared_statement.setInt(3, data.getId());
 			
 			prepared_statement.execute();
-			System.out.println("INSERT INTO ARTICLE 성공");
+			//System.out.println("INSERT INTO ARTICLE 성공");
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.printf("%s", "INSERT INTO ARTICLE 비성공");
-			System.out.println();
+			//System.out.printf("%s", "INSERT INTO ARTICLE 비성공");
+			//System.out.println();
 		}
 	}
 
@@ -117,6 +117,7 @@ public class ArticleDAO extends BaseDAO implements DAO<Article>{
 		
 		return resList;
 	}
+	
 	public int getTotArticleNumber() {
 		String query = "select count(*) from article";
 		ResultSet resultSet = runSQL(query);
@@ -144,6 +145,58 @@ public class ArticleDAO extends BaseDAO implements DAO<Article>{
 			e.printStackTrace();
 		}
 		return maxNumber;
+	}
+
+	public List<ResponseArticle> readMyAllArticle(String userId) {
+		String query4rowNumber = "SELECT COUNT(*) FROM ARTICLE, CUSTOMER WHERE ARTICLE.AUTHOR=CUSTOMER.ID AND CUSTOMER.USERID LIKE \'" + userId +"\'";
+		ResultSet resultSet4rowNumber = runSQL(query4rowNumber);
+		int rowNumber=0;
+		try {
+			resultSet4rowNumber.next();
+			rowNumber = resultSet4rowNumber.getInt(1);
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		List<ResponseArticle> resList = new ArrayList<ResponseArticle>();
+		String query = "SELECT * FROM ARTICLE, CUSTOMER WHERE ARTICLE.AUTHOR=CUSTOMER.ID AND CUSTOMER.USERID LIKE \'" + userId + "\' ORDER BY ARTICLE.ID DESC";
+		ResultSet resultSet = runSQL(query);
+		
+		try {
+			for(int i =0 ; i<rowNumber; i++) {
+				if(resultSet.next()) {
+					ResponseArticle responseArticle = new ResponseArticle();
+					responseArticle.setAuthor(resultSet.getString(7));
+					responseArticle.setNumber(resultSet.getInt(1));
+					responseArticle.setTitle(resultSet.getString(3));
+					responseArticle.setDate(resultSet.getDate(5).toLocalDate());
+					
+					resList.add(responseArticle);
+					
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resList;
+	}
+
+	public int getMyTotArticleNumber(String userId) {
+		String query = "select count(*) from article, CUSTOMER WHERE ARTICLE.AUTHOR=CUSTOMER.ID AND CUSTOMER.USERID LIKE \'" + userId +"\'";
+		ResultSet resultSet = runSQL(query);
+		int cntNumber=0;
+		try {
+			if(resultSet.next()) {
+				cntNumber = resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cntNumber;
 	}
 }
 
